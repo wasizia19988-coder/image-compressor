@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started — MediaForge</title>
+<meta name="description" content="Create your MediaForge account.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./animations.css">
+<link rel="stylesheet" href="./responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-row">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark"><i class="fa-solid fa-layer-group"></i></span>
+      <span class="nav-word">MediaForge</span>
+    </a>
+    <nav class="nav-links d-desktop" aria-label="Primary">
+      <a href="compressor.html">Image Compressor</a>
+      <a href="audio-cutter.html">Audio Cutter</a>
+      <a href="audio-transcript.html">Audio to Transcript</a>
+      <a href="voice-recorder.html">Voice Recorder</a>
+      <a href="tools.html">Tools</a>
+    </nav>
+    <div class="nav-actions d-desktop">
+      <a href="login.html" class="btn btn-ghost">Log in</a>
+      <a href="register.html" class="btn btn-solid">Get Started</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="compressor.html"><i class="fa-solid fa-file-zipper"></i> Image Compressor</a>
+    <a href="audio-cutter.html"><i class="fa-solid fa-scissors"></i> Audio Cutter</a>
+    <a href="audio-transcript.html"><i class="fa-solid fa-file-lines"></i> Audio to Transcript</a>
+    <a href="voice-recorder.html"><i class="fa-solid fa-microphone"></i> Voice Recorder</a>
+    <a href="tools.html"><i class="fa-solid fa-toolbox"></i> Tools</a>
+    <a href="dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="login.html">Log in</a>
+    <a href="register.html" class="btn btn-solid mobile-cta">Get Started</a>
+  </div>
+</header>
+
+<main id="mainContent">
+  <div class="auth-shell">
+    <div class="card auth-card">
+      <h1>Create your account</h1>
+      <p class="section-lede">Free forever for individual use. No card required.</p>
+
+      <div class="form-note"><i class="fa-solid fa-circle-info"></i> Demo signup — your name and email are saved only in this browser's local storage, not sent to any server.</div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-group" id="nameGroup">
+          <label for="regName">Full name</label>
+          <input type="text" id="regName" class="form-control" placeholder="Jordan Lee" required>
+          <span class="field-error">Enter your name.</span>
+        </div>
+        <div class="form-group" id="regEmailGroup">
+          <label for="regEmail">Email address</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="you@example.com" required>
+          <span class="field-error">Enter a valid email address.</span>
+        </div>
+        <div class="form-group" id="regPasswordGroup">
+          <label for="regPassword">Password</label>
+          <div class="password-field">
+            <input type="password" id="regPassword" class="form-control" placeholder="At least 8 characters" required minlength="8">
+            <button type="button" class="password-toggle" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <span class="field-error">Password must be at least 8 characters.</span>
+        </div>
+        <div class="form-group" id="termsGroup" style="margin-bottom:20px;">
+          <label class="check-row"><input type="checkbox" id="agreeTerms"> I agree to the Terms of Service and Privacy Policy</label>
+          <span class="field-error">You need to accept the terms to continue.</span>
+        </div>
+        <button type="submit" class="btn btn-solid btn-block btn-lg" id="registerSubmit">Create account</button>
+      </form>
+
+      <div class="auth-divider">or</div>
+      <button class="btn btn-outline btn-block" type="button"><i class="fa-brands fa-google"></i> Continue with Google</button>
+
+      <p class="auth-foot">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+  </div>
+</main>
+
+<script src="main.js"></script>
+<script>
+  document.getElementById('registerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('regName');
+    const email = document.getElementById('regEmail');
+    const password = document.getElementById('regPassword');
+    const terms = document.getElementById('agreeTerms');
+    let valid = true;
+
+    document.getElementById('nameGroup').classList.toggle('has-error', name.value.trim().length < 2);
+    if (name.value.trim().length < 2) valid = false;
+
+    document.getElementById('regEmailGroup').classList.toggle('has-error', !email.value.includes('@'));
+    if (!email.value.includes('@')) valid = false;
+
+    document.getElementById('regPasswordGroup').classList.toggle('has-error', password.value.length < 8);
+    if (password.value.length < 8) valid = false;
+
+    document.getElementById('termsGroup').classList.toggle('has-error', !terms.checked);
+    if (!terms.checked) valid = false;
+
+    if (!valid) return;
+
+    try {
+      localStorage.setItem('mf_user', JSON.stringify({ name: name.value.trim(), email: email.value.trim(), joined: new Date().toISOString() }));
+    } catch (err) { /* storage unavailable */ }
+
+    const btn = document.getElementById('registerSubmit');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch spinner"></i> Creating account…';
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+  });
+</script>
+</body>
+</html>

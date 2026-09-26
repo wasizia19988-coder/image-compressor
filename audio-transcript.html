@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio to Transcript — MediaForge</title>
+<meta name="description" content="Transcribe an audio file with OpenAI and copy or download the text.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./animations.css">
+<link rel="stylesheet" href="./responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-row">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark"><i class="fa-solid fa-layer-group"></i></span>
+      <span class="nav-word">MediaForge</span>
+    </a>
+    <nav class="nav-links d-desktop" aria-label="Primary">
+      <a href="compressor.html">Image Compressor</a>
+      <a href="audio-cutter.html">Audio Cutter</a>
+      <a href="audio-transcript.html">Audio to Transcript</a>
+      <a href="voice-recorder.html">Voice Recorder</a>
+      <a href="tools.html">Tools</a>
+    </nav>
+    <div class="nav-actions d-desktop">
+      <a href="login.html" class="btn btn-ghost">Log in</a>
+      <a href="register.html" class="btn btn-solid">Get Started</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="compressor.html"><i class="fa-solid fa-file-zipper"></i> Image Compressor</a>
+    <a href="audio-cutter.html"><i class="fa-solid fa-scissors"></i> Audio Cutter</a>
+    <a href="audio-transcript.html"><i class="fa-solid fa-file-lines"></i> Audio to Transcript</a>
+    <a href="voice-recorder.html"><i class="fa-solid fa-microphone"></i> Voice Recorder</a>
+    <a href="tools.html"><i class="fa-solid fa-toolbox"></i> Tools</a>
+    <a href="dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="login.html">Log in</a>
+    <a href="register.html" class="btn btn-solid mobile-cta">Get Started</a>
+  </div>
+</header>
+
+<main id="mainContent">
+  <section class="workspace-head">
+    <div class="wrap">
+      <p class="eyebrow"><i class="fa-solid fa-file-lines"></i> Audio to Transcript</p>
+      <h1>Turn audio into text</h1>
+      <p>Choose an audio file and transcribe it with OpenAI. Your file is sent to OpenAI for processing.</p>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <div class="wrap workspace-grid">
+      <div>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose an audio file to transcribe">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <h4>Drag &amp; drop an audio file here</h4>
+          <p id="filePrompt">or click to browse · MP3, MP4, M4A, WAV, WEBM up to 25 MB</p>
+          <input type="file" id="fileInput" accept=".mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm,audio/mpeg,audio/mp4,audio/wav,audio/webm">
+        </div>
+
+        <div class="card panel" style="margin-top:22px;">
+          <div class="panel-title"><i class="fa-solid fa-file-lines"></i> Transcript</div>
+          <label class="visually-hidden" for="transcriptOutput">Transcription result</label>
+          <textarea class="form-control" id="transcriptOutput" rows="12" placeholder="Your transcript will appear here." readonly style="resize:vertical;line-height:1.6;"></textarea>
+          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+            <button class="btn btn-outline" id="copyBtn" type="button" disabled><i class="fa-regular fa-copy"></i> Copy text</button>
+            <button class="btn btn-outline" id="downloadBtn" type="button" disabled><i class="fa-solid fa-download"></i> Download .txt</button>
+          </div>
+          <p id="statusMessage" role="status" aria-live="polite" style="color:var(--text-dim);font-size:.85rem;margin:14px 0 0;"></p>
+        </div>
+      </div>
+
+      <div>
+        <div class="card panel">
+          <div class="panel-title"><i class="fa-solid fa-key"></i> OpenAI API key</div>
+          <div class="form-group">
+            <label for="apiKey">API key</label>
+            <input class="form-control" type="password" id="apiKey" autocomplete="off" spellcheck="false" placeholder="sk-..." required>
+          </div>
+          <p style="color:var(--text-dim);font-size:.82rem;line-height:1.6;margin:0;">The key is used only for this request and is not saved by this page. Anyone who can access this browser session may still inspect it. Do not enter a key on a shared or public computer.</p>
+        </div>
+
+        <div class="card panel">
+          <div class="panel-title"><i class="fa-solid fa-shield-halved"></i> Before you transcribe</div>
+          <p style="color:var(--text-dim);font-size:.85rem;line-height:1.6;margin:0;">Transcription sends your selected audio directly to OpenAI using your API key. OpenAI usage charges and data policies apply. Supported file types: MP3, MP4, MPEG, MPGA, M4A, WAV, and WEBM; maximum file size is 25 MB.</p>
+        </div>
+
+        <button class="btn btn-solid btn-block" id="transcribeBtn" type="button" disabled>
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Transcribe audio
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <span class="nav-word"><i class="fa-solid fa-layer-group"></i> MediaForge</span>
+      <p>Your media. Your machine. Browser-based tools for your files.</p>
+      <div class="footer-badge"><i class="fa-solid fa-lock"></i> Your API key is not stored</div>
+    </div>
+    <div class="footer-col">
+      <h6>Tools</h6>
+      <ul>
+        <li><a href="compressor.html">Image Compressor</a></li>
+        <li><a href="audio-cutter.html">Audio Cutter</a></li>
+        <li><a href="audio-transcript.html">Audio to Transcript</a></li>
+        <li><a href="voice-recorder.html">Voice Recorder</a></li>
+        <li><a href="tools.html">All Tools</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Company</h6>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Legal</h6>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">
+    <span>© 2026 MediaForge. All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="audio-transcript.js"></script>
+</body>
+</html>

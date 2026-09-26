@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Compressor — MediaForge</title>
+<meta name="description" content="Compress JPG, PNG and WebP images in your browser. Adjustable quality, live before/after preview, no uploads.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./animations.css">
+<link rel="stylesheet" href="./responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-row">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark"><i class="fa-solid fa-layer-group"></i></span>
+      <span class="nav-word">MediaForge</span>
+    </a>
+    <nav class="nav-links d-desktop" aria-label="Primary">
+      <a href="compressor.html">Image Compressor</a>
+      <a href="audio-cutter.html">Audio Cutter</a>
+      <a href="audio-transcript.html">Audio to Transcript</a>
+      <a href="voice-recorder.html">Voice Recorder</a>
+      <a href="tools.html">Tools</a>
+    </nav>
+    <div class="nav-actions d-desktop">
+      <a href="login.html" class="btn btn-ghost">Log in</a>
+      <a href="register.html" class="btn btn-solid">Get Started</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="compressor.html"><i class="fa-solid fa-file-zipper"></i> Image Compressor</a>
+    <a href="audio-cutter.html"><i class="fa-solid fa-scissors"></i> Audio Cutter</a>
+    <a href="audio-transcript.html"><i class="fa-solid fa-file-lines"></i> Audio to Transcript</a>
+    <a href="voice-recorder.html"><i class="fa-solid fa-microphone"></i> Voice Recorder</a>
+    <a href="tools.html"><i class="fa-solid fa-toolbox"></i> Tools</a>
+    <a href="dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="login.html">Log in</a>
+    <a href="register.html" class="btn btn-solid mobile-cta">Get Started</a>
+  </div>
+</header>
+
+<main id="mainContent">
+
+  <section class="workspace-head">
+    <div class="wrap">
+      <p class="eyebrow"><i class="fa-solid fa-file-zipper"></i> Image Compressor</p>
+      <h1>Shrink images without shrinking quality</h1>
+      <p>Drop in a JPG, PNG or WebP file, choose a quality level, and download the optimized version — all processed locally in this tab.</p>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <div class="wrap workspace-grid">
+
+      <!-- LEFT: dropzone + result preview -->
+      <div>
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload an image to compress">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <h4>Drag &amp; drop an image here</h4>
+          <p>or click to browse · JPG, PNG, WebP up to 20MB</p>
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp">
+        </div>
+
+        <div id="previewArea" class="d-none" style="margin-top:22px;">
+          <div class="result-preview" id="resultPreview">
+            <span class="placeholder-icon"><i class="fa-solid fa-image"></i></span>
+          </div>
+          <div class="card panel">
+            <div class="panel-title"><i class="fa-solid fa-chart-simple"></i> Compression result</div>
+            <div class="stat-row"><span class="stat-name">File name</span><span class="stat-num" id="statName">—</span></div>
+            <div class="stat-row"><span class="stat-name">Dimensions</span><span class="stat-num" id="statDims">—</span></div>
+            <div class="stat-row"><span class="stat-name">Original size</span><span class="stat-num" id="statOriginal">—</span></div>
+            <div class="stat-row"><span class="stat-name">Compressed size</span><span class="stat-num" id="statCompressed">—</span></div>
+            <div class="stat-row"><span class="stat-name">Savings</span><span class="stat-num" id="statSavings" style="color:var(--success);">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: controls -->
+      <div>
+        <div class="card panel">
+          <div class="panel-title"><i class="fa-solid fa-sliders"></i> Compression settings</div>
+
+          <div class="field">
+            <div class="field-label"><span>Output format</span></div>
+            <div class="segmented" id="formatSwitch">
+              <button type="button" data-format="image/webp" class="active">WebP</button>
+              <button type="button" data-format="image/jpeg">JPEG</button>
+              <button type="button" data-format="image/png">PNG</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label"><span>Quality</span><b id="qualityLabel">80%</b></div>
+            <input type="range" id="qualitySlider" min="10" max="100" value="80">
+          </div>
+
+          <div class="field">
+            <div class="field-label"><span>Max width</span><b id="widthLabel">Original</b></div>
+            <input type="range" id="widthSlider" min="320" max="4000" value="4000">
+          </div>
+
+          <div class="field">
+            <button class="btn btn-solid btn-block" id="downloadBtn" disabled>
+              <i class="fa-solid fa-download"></i> Download optimized file
+            </button>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <div class="panel-title"><i class="fa-solid fa-shield-halved"></i> Good to know</div>
+          <p style="color:var(--text-dim);font-size:0.85rem;line-height:1.6;margin:0;">Your image is compressed using your browser's own canvas engine. It is never uploaded to a server — closing this tab discards it completely.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <span class="nav-word"><i class="fa-solid fa-layer-group"></i> MediaForge</span>
+      <p>Your media. Your machine. Most tools process files on your device; audio transcription sends audio to OpenAI.</p>
+      <div class="footer-badge"><i class="fa-solid fa-lock"></i> On-device processing for most tools</div>
+    </div>
+    <div class="footer-col">
+      <h6>Tools</h6>
+      <ul>
+        <li><a href="compressor.html">Image Compressor</a></li>
+        <li><a href="audio-cutter.html">Audio Cutter</a></li>
+        <li><a href="audio-transcript.html">Audio to Transcript</a></li>
+        <li><a href="voice-recorder.html">Voice Recorder</a></li>
+        <li><a href="tools.html">All Tools</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Company</h6>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Legal</h6>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">
+    <span>© 2026 MediaForge. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="compressor.js"></script>
+</body>
+</html>

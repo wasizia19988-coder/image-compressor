@@ -1,0 +1,26 @@
+/* ==========================================================================
+   MediaForge — Animation keyframes
+   ========================================================================== */
+
+@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes barPulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+
+.spinner { animation: spin 0.8s linear infinite; }
+
+.stagger > *:nth-child(1) { transition-delay: 0ms; }
+.stagger > *:nth-child(2) { transition-delay: 70ms; }
+.stagger > *:nth-child(3) { transition-delay: 140ms; }
+.stagger > *:nth-child(4) { transition-delay: 210ms; }
+.stagger > *:nth-child(5) { transition-delay: 280ms; }
+.stagger > *:nth-child(6) { transition-delay: 350ms; }
+.stagger > *:nth-child(n+7) { transition-delay: 400ms; }
+
+.processing-bars { display: flex; align-items: flex-end; gap: 3px; height: 22px; }
+.processing-bars span { width: 3px; background: var(--accent-2); border-radius: 2px; animation: barPulse 1s ease-in-out infinite; }
+.processing-bars span:nth-child(1){height:40%;animation-delay:0s;}
+.processing-bars span:nth-child(2){height:70%;animation-delay:.1s;}
+.processing-bars span:nth-child(3){height:100%;animation-delay:.2s;}
+.processing-bars span:nth-child(4){height:60%;animation-delay:.3s;}
+.processing-bars span:nth-child(5){height:85%;animation-delay:.4s;}

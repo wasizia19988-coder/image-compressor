@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediaForge — Powerful media tools, right in your browser</title>
+<meta name="description" content="Compress images, cut and transcribe audio, and record voice. Most tools run in your browser; transcription is powered by OpenAI.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./animations.css">
+<link rel="stylesheet" href="./responsive.css">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<!-- ============ NAVBAR (see navbar.html) ============ -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-row">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark"><i class="fa-solid fa-layer-group"></i></span>
+      <span class="nav-word">MediaForge</span>
+    </a>
+    <nav class="nav-links d-desktop" aria-label="Primary">
+      <a href="compressor.html">Image Compressor</a>
+      <a href="audio-cutter.html">Audio Trim</a>
+      <a href="audio-transcript.html">Audio to Transcript</a>
+      <a href="voice-recorder.html">Voice Recorder</a>
+      <a href="tools.html" class="is-active">Tools</a>
+    </nav>
+    <div class="nav-actions d-desktop">
+      <a href="login.html" class="btn btn-ghost">Log in</a>
+      <a href="register.html" class="btn btn-solid">Get Started</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="compressor.html"><i class="fa-solid fa-file-zipper"></i> Image Compressor</a>
+    <a href="audio-cutter.html"><i class="fa-solid fa-scissors"></i> Audio Cutter</a>
+    <a href="audio-transcript.html"><i class="fa-solid fa-file-lines"></i> Audio to Transcript</a>
+    <a href="voice-recorder.html"><i class="fa-solid fa-microphone"></i> Voice Recorder</a>
+    <a href="tools.html"><i class="fa-solid fa-toolbox"></i> Tools</a>
+    <a href="dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="login.html">Log in</a>
+    <a href="register.html" class="btn btn-solid mobile-cta">Get Started</a>
+  </div>
+</header>
+
+<main id="mainContent">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero hero-with-birds" id="homeHero">
+    <div class="wrap hero-grid">
+      <div class="reveal is-visible">
+        <p class="eyebrow"><i class="fa-solid fa-bolt"></i> Your media. Your machine. Zero compromise.</p>
+        <h1 class="hero-title">Powerful media tools. Right in your browser.</h1>
+        <p class="hero-lede">Compress images, cut audio, record voice, or transcribe audio. Most tools process files on your device; transcription is powered by OpenAI.</p>
+        <div class="hero-ctas">
+          <a href="compressor.html" class="btn btn-solid btn-lg">Start Compressing <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="audio-cutter.html" class="btn btn-outline btn-lg">Explore Audio Tools</a>
+        </div>
+        <div class="hero-trust">
+          <span><i class="fa-solid fa-circle-check"></i> Local tools available</span>
+          <span><i class="fa-solid fa-circle-check"></i> Fast processing</span>
+          <span><i class="fa-solid fa-circle-check"></i> Privacy focused</span>
+        </div>
+      </div>
+
+      <div class="preview-card reveal is-visible">
+        <div class="preview-head">
+          <div class="preview-head-title">
+            <span class="preview-head-icon"><i class="fa-solid fa-file-zipper"></i></span>
+            Image Compressor
+          </div>
+          <span class="badge badge-success">Ready to optimize</span>
+        </div>
+        <div class="preview-file-row">
+          <span class="preview-thumb"><i class="fa-solid fa-mountain-sun"></i></span>
+          <div class="preview-file-info">
+            <div class="fname">mountain-retreat.jpg</div>
+            <div class="fmeta">JPEG · 3024 × 2016</div>
+          </div>
+          <span class="preview-savings">−77%</span>
+        </div>
+        <div class="field-label"><span>Compression settings</span><b>Balanced · WebP output</b></div>
+        <div class="progress-track"><div class="progress-fill" style="width:77%"></div></div>
+        <div class="preview-stats">
+          <div class="preview-stat"><div class="stat-label">Original size</div><div class="stat-value">2.8 MB</div></div>
+          <div class="preview-stat is-good"><div class="stat-label">Compressed size</div><div class="stat-value">640 KB</div></div>
+        </div>
+        <a href="compressor.html" class="btn btn-solid btn-block">Download optimized file</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow" style="justify-content:center;"><i class="fa-solid fa-shapes"></i> Why MediaForge</p>
+        <h2 class="section-title">Tools that fit the way you work</h2>
+        <p class="section-lede">Most tools process files in your browser. Audio transcription is powered by OpenAI and sends the selected audio for processing.</p>
+      </div>
+      <div class="feature-grid stagger reveal">
+        <div class="card card-hover feature-card">
+          <span class="feature-icon badge-accent" style="background:var(--accent-soft);color:var(--accent);"><i class="fa-solid fa-lock"></i></span>
+          <h3>Private by design</h3>
+          <p>Compression, trimming and recording happen locally in your browser. Audio transcription sends audio to OpenAI.</p>
+        </div>
+        <div class="card card-hover feature-card">
+          <span class="feature-icon" style="background:var(--accent-2-soft);color:var(--accent-2);"><i class="fa-solid fa-gauge-high"></i></span>
+          <h3>Genuinely fast</h3>
+          <p>No round trip to a server. Most files are compressed, trimmed or exported in under a second.</p>
+        </div>
+        <div class="card card-hover feature-card">
+          <span class="feature-icon" style="background:var(--success-soft);color:var(--success);"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <h3>No learning curve</h3>
+          <p>Drag a file in, adjust one or two settings, and download. Every tool is built to be understood in ten seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOOLS SHOWCASE ============ -->
+  <section class="section section-tight" style="background:var(--surface);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow"><i class="fa-solid fa-toolbox"></i> The toolkit</p>
+        <h2 class="section-title">Four tools. One tab.</h2>
+      </div>
+      <div class="tool-grid tool-grid-four stagger reveal">
+        <a href="compressor.html" class="card card-hover tool-card">
+          <span class="tool-card-icon" style="background:var(--accent-soft);color:var(--accent);"><i class="fa-solid fa-file-zipper"></i></span>
+          <h3>Image Compressor</h3>
+          <p>Shrink JPG, PNG and WebP files by up to 80% with a live before/after preview and adjustable quality.</p>
+          <span class="tool-link">Open tool <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="audio-cutter.html" class="card card-hover tool-card">
+          <span class="tool-card-icon" style="background:var(--accent-2-soft);color:var(--accent-2);"><i class="fa-solid fa-scissors"></i></span>
+          <h3>Audio Cutter</h3>
+          <p>Load any audio file, drag the waveform to select a range, and export the trimmed clip instantly.</p>
+          <span class="tool-link">Open tool <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="audio-transcript.html" class="card card-hover tool-card">
+          <span class="tool-card-icon" style="background:var(--accent-2-soft);color:var(--accent-2);"><i class="fa-solid fa-file-lines"></i></span>
+          <h3>Audio to Transcript</h3>
+          <p>Turn an audio file into editable text with OpenAI transcription, then copy or download the result.</p>
+          <span class="tool-link">Open tool <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <a href="voice-recorder.html" class="card card-hover tool-card">
+          <span class="tool-card-icon" style="background:var(--success-soft);color:var(--success);"><i class="fa-solid fa-microphone"></i></span>
+          <h3>Voice Recorder</h3>
+          <p>Record straight from your microphone with a live level meter, then play back and download the take.</p>
+          <span class="tool-link">Open tool <i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow" style="justify-content:center;"><i class="fa-solid fa-diagram-project"></i> How it works</p>
+        <h2 class="section-title">Three steps, zero setup</h2>
+      </div>
+      <div class="steps stagger reveal">
+        <div class="card step">
+          <h4>Drop your file</h4>
+          <p>Drag and drop, or choose a file from your device. Nothing is sent anywhere yet.</p>
+        </div>
+        <div class="card step">
+          <h4>Adjust the settings</h4>
+          <p>Pick a quality level, trim range, or recording format — see the result update live.</p>
+        </div>
+        <div class="card step">
+          <h4>Download the result</h4>
+          <p>Export straight to your downloads folder. The tool keeps no copy once you leave the page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <h2>Ready to reclaim your media?</h2>
+          <p>Free to use, no account required to try any tool.</p>
+        </div>
+        <a href="register.html" class="btn btn-solid btn-lg">Get Started Free <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER (see footer.html) ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <span class="nav-word"><i class="fa-solid fa-layer-group"></i> MediaForge</span>
+      <p>Your media. Your machine. Most tools process files on your device; audio transcription sends audio to OpenAI.</p>
+      <div class="footer-badge"><i class="fa-solid fa-lock"></i> On-device processing for most tools</div>
+    </div>
+    <div class="footer-col">
+      <h6>Tools</h6>
+      <ul>
+        <li><a href="compressor.html">Image Compressor</a></li>
+        <li><a href="audio-cutter.html">Audio Cutter</a></li>
+        <li><a href="audio-transcript.html">Audio to Transcript</a></li>
+        <li><a href="voice-recorder.html">Voice Recorder</a></li>
+        <li><a href="tools.html">All Tools</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Company</h6>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h6>Legal</h6>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">
+    <span>© 2026 MediaForge. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js" defer></script>
+<script src="home-animation.js" defer></script>
+</body>
+</html>

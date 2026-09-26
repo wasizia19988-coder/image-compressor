@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — MediaForge</title>
+<meta name="description" content="Your MediaForge activity: files processed, time saved, and recent history.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./animations.css">
+<link rel="stylesheet" href="./responsive.css">
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to main content</a>
+
+<header class="nav" id="siteNav">
+  <div class="wrap nav-row">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-mark"><i class="fa-solid fa-layer-group"></i></span>
+      <span class="nav-word">MediaForge</span>
+    </a>
+    <nav class="nav-links d-desktop" aria-label="Primary">
+      <a href="compressor.html">Image Compressor</a>
+      <a href="audio-cutter.html">Audio Cutter</a>
+      <a href="audio-transcript.html">Audio to Transcript</a>
+      <a href="voice-recorder.html">Voice Recorder</a>
+      <a href="tools.html">Tools</a>
+    </nav>
+    <div class="nav-actions d-desktop">
+      <button class="btn btn-ghost" id="signOutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</button>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="compressor.html"><i class="fa-solid fa-file-zipper"></i> Image Compressor</a>
+    <a href="audio-cutter.html"><i class="fa-solid fa-scissors"></i> Audio Cutter</a>
+    <a href="audio-transcript.html"><i class="fa-solid fa-file-lines"></i> Audio to Transcript</a>
+    <a href="voice-recorder.html"><i class="fa-solid fa-microphone"></i> Voice Recorder</a>
+    <a href="tools.html"><i class="fa-solid fa-toolbox"></i> Tools</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="#" id="mobileSignOut">Sign out</a>
+  </div>
+</header>
+
+<main id="mainContent">
+  <div class="dash-shell">
+    <aside class="dash-sidebar">
+      <div class="dash-user">
+        <span class="dash-avatar" id="dashAvatar">—</span>
+        <div>
+          <div class="u-name" id="dashName">—</div>
+          <div class="u-plan">Free plan</div>
+        </div>
+      </div>
+      <nav class="dash-nav" aria-label="Dashboard">
+        <a href="dashboard.html" class="active"><i class="fa-solid fa-gauge"></i> <span>Overview</span></a>
+        <a href="compressor.html"><i class="fa-solid fa-file-zipper"></i> <span>Image Compressor</span></a>
+        <a href="audio-cutter.html"><i class="fa-solid fa-scissors"></i> <span>Audio Cutter</span></a>
+        <a href="audio-transcript.html"><i class="fa-solid fa-file-lines"></i> <span>Audio to Transcript</span></a>
+        <a href="voice-recorder.html"><i class="fa-solid fa-microphone"></i> <span>Voice Recorder</span></a>
+      </nav>
+    </aside>
+
+    <div class="dash-main">
+      <div class="dash-head">
+        <div>
+          <h1>Welcome back<span id="welcomeName"></span></h1>
+          <p style="color:var(--text-dim);font-size:0.9rem;margin:4px 0 0;">Here's what you've processed in this browser.</p>
+        </div>
+        <button class="btn btn-outline btn-sm" id="clearHistoryBtn"><i class="fa-solid fa-trash"></i> Clear history</button>
+      </div>
+
+      <div class="stat-cards">
+        <div class="card stat-card">
+          <div class="s-label">Files processed</div>
+          <div class="s-value" id="statTotal">0</div>
+        </div>
+        <div class="card stat-card">
+          <div class="s-label">Images compressed</div>
+          <div class="s-value" id="statImages">0</div>
+        </div>
+        <div class="card stat-card">
+          <div class="s-label">Audio tools used</div>
+          <div class="s-value" id="statAudio">0</div>
+        </div>
+        <div class="card stat-card">
+          <div class="s-label">Recordings made</div>
+          <div class="s-value" id="statRecordings">0</div>
+        </div>
+      </div>
+
+      <div class="card panel">
+        <div class="panel-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent activity</div>
+        <div id="historyTableWrap">
+          <table class="history-table" id="historyTable">
+            <thead>
+              <tr><th>File</th><th>Tool</th><th>Detail</th><th>When</th></tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="main.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
