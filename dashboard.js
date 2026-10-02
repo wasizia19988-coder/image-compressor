@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'audio-cutter':   { label: 'Audio Cutter',      icon: 'fa-scissors',   color: 'var(--accent-2)', bg: 'var(--accent-2-soft)' },
     'audio-transcript': { label: 'Audio to Transcript', icon: 'fa-file-lines', color: 'var(--accent-2)', bg: 'var(--accent-2-soft)' },
     'voice-recorder': { label: 'Voice Recorder',    icon: 'fa-microphone', color: 'var(--success)',  bg: 'var(--success-soft)' },
+    'image-generator': { label: 'Image Generator',  icon: 'fa-wand-magic-sparkles', color: 'var(--accent)', bg: 'var(--accent-soft)' },
   };
 
   function renderDashboard() {
